@@ -68,6 +68,8 @@ const App = () => {
     setTotal(left + updatedRight);
   };
 
+  debugger
+
   return (
     <div>
       {left}
