@@ -1,82 +1,49 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
-const Header = (props) => {
-    return (
-      <h1>{props.course.name}</h1>
-    )
-  }
 
-const Content = (props) => {
-    return (
-    <>
-      <Part part={props.course.parts[0].name} exercises={props.course.parts[0].exercises}/>
-      <Part part={props.course.parts[1].name} exercises={props.course.parts[1].exercises}/>
-      <Part part={props.course.parts[2].name} exercises={props.course.parts[2].exercises}/>
-    </>
-    )
-  }
-
-const Total = (props) => {
-    const total = props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises
-    return (
-      <p>Number of exercises {total}</p>
-    )
-  }
-
-const Part = (props) => {
-    return (
-      <p> {props.part} {props.exercises} </p>
-    )
-  }
-
-const History = (props) => {
-  if (props.allClicks.length === 0) {
+const Statistics = ({good, neutral, bad}) => {
     return(
-      <div>
-        the app is used by pressing the buttons
-      </div>
-    )
-  }
-  return(
     <div>
-      button press history: {props.allClicks.join(' ')}
-    </div>
-  )
-}
+      <h1>Statistics</h1>
+      <div> Good: {good}  </div>
+      <div> Neutral: {neutral}   </div>
+      <div> Bad: {bad}  </div>
+    </div>)
+  }
 
-const Button = ({onClick,text}) => {
-  return(<button onClick={onClick}>{text}</button>)
-}
 
 const App = () => {
-  const [left, setLeft] = useState(0)
-  const [right, setRight] = useState(0)
-  const [allClicks, setAll] = useState([])
-  const [total, setTotal] = useState(0)
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
-  const handleLeftClick = () => {
-    setAll(allClicks.concat('L'))
-    const updatedLeft = left + 1
-    setLeft(updatedLeft)
-    setTotal(updatedLeft + right) 
+
+  const handleGood = () => {
+    setGood(good + 1)
   }
 
-  const handleRightClick = () => {
-    setAll(allClicks.concat('R'));
-    const updatedRight = right + 1;
-    setRight(updatedRight);
-    setTotal(left + updatedRight);
-  };
+  
+  const handleNeutral = () => {
+    setNeutral(neutral + 1)
+  }
 
-  debugger
+  
+  const handleBad = () => {
+    setBad(bad + 1)
+  }
+  
+  
 
   return (
     <div>
-      {left}
-      <Button onClick={handleLeftClick} text='left' />
-      <Button onClick={handleRightClick} text='right' />
-      {right}
-      <History allClicks={allClicks} />
+      <div>
+        <h1>Give Feedback</h1>
+        <button onClick={handleGood}>Good</button>
+        <button onClick={handleNeutral}>Neutral</button>
+        <button onClick={handleBad}>Bad</button>
+      </div>
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   )
 }
