@@ -9,7 +9,7 @@ const Average = ({good, neutral, bad}) => {
   if (all === 0) {
     return (
       <div>
-        Click the buttons to get an average
+        No feedback given. Click the buttons to get an average
       </div>
     )
   }
