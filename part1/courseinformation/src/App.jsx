@@ -1,13 +1,35 @@
 import { useState } from 'react'
 
 
+
+const Average = ({good, neutral, bad}) => {
+
+  const all = good + bad + neutral
+
+  if (all === 0) {
+    return (
+      <div>
+        Click the buttons to get an average
+      </div>
+    )
+  }
+
+  return (
+    <div> Average: {(good - neutral) / (good + bad + neutral)}</div>
+  )
+
+}
+
 const Statistics = ({good, neutral, bad}) => {
-    return(
+
+  return(
     <div>
       <h1>Statistics</h1>
       <div> Good: {good}  </div>
       <div> Neutral: {neutral}   </div>
       <div> Bad: {bad}  </div>
+      <div> All: {good + bad + neutral}</div>
+      <Average good={good} neutral={neutral} bad={bad}/>
     </div>)
   }
 
