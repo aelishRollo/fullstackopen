@@ -21,7 +21,7 @@ const Average = ({good, neutral, bad}) => {
 }
 
 const Statistics = ({good, neutral, bad}) => {
-
+//nice, already done
   return(
     <div>
       <h1>Statistics</h1>
