@@ -1,7 +1,7 @@
 
 const Course = ({course}) => {
-  const {id, name, parts} = course
-  console.log(parts)
+  const {name, parts} = course
+  
   return (
     <div>
       <h1>{name}</h1>
