@@ -1,7 +1,7 @@
 
 const Course = ({course}) => {
   const {name, parts} = course
-  
+
   return (
     <div>
       <h1>{name}</h1>
@@ -12,6 +12,13 @@ const Course = ({course}) => {
           )
         })
         }
+      </div>
+      <div>
+      Total of{' '}
+      {parts.reduce((sum, part) => {
+        return sum + part.exercises
+      }, 0)}
+      {' '} exercises
       </div>
     </div>
   )
