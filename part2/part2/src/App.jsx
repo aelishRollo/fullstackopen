@@ -24,6 +24,8 @@ const Course = ({course}) => {
   )
 }
 
+//Looks like I did it already, nice
+
 const App = () => {
   const course = {
     id: 1,
