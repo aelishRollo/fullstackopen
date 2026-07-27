@@ -1,56 +1,42 @@
-import Note from './components/Note'
 import { useState } from 'react'
 
-
-
-const App = (props) => {
-  
-  //for when you hit submit. Adds new note to notes and resets the text in the input
-  const addNote = (event) => {
-    event.preventDefault()
-    console.log('button clicked')
-    console.log(event.target)
-
-    const noteObject = {
-      content: newNote,
-      important: Math.random() < 0.5,
-      id: String(notes.length + 1)
+const App = () => {
+  const [persons, setPersons] = useState([
+    {name: 'Arto Hellas',
+      id: 0
+    },
+    {name: 'Edwin Boroughs',
+      id: 1
     }
+  ])
+  const [newName, setNewName] = useState('')
 
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
-
+  const handlePersonChange = (event) => {
+    setNewName(event.target.value)
+    console.log(event.target.value)
   }
-
-  const [notes, setNotes] = useState(props.notes)
-  const [newNote, setNewNote] = useState('This is a new note...')
-  const [showAll, setShowAll] = useState(true)
-
-  const notesToShow = showAll ? notes : notes.filter(note => note.important)
-
-  //for handling typing into the input box
-  const handleNoteChange = (event) => {
-    console.log(event.target.value);
-    setNewNote(event.target.value)
+  const addPerson = (event) => {
+    event.preventDefault()
+    const newPerson = {name: newName, id: persons.length + 1}
+    setPersons(persons.concat(newPerson))
+    setNewName('')
   }
 
   return (
     <div>
-      <h1>Notes</h1>
-      <div>
-        <button onClick={(() => setShowAll(!showAll))}>
-          Show {showAll ? 'important' : 'all'}
-        </button>
-      </div>
-      <ul>
-        {notesToShow.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-      </ul>
-      <form onSubmit={addNote}>
-        <input value={newNote} onChange={handleNoteChange}/>
-        <button type='Submit'>Save </button>
+      <h2>Phonebook</h2>
+      <form onSubmit={addPerson}>
+        <div>
+          name: <input value={newName} onChange={handlePersonChange}/>
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
       </form>
+      <h2>Numbers</h2>
+      <ul>
+        {persons.map((person) => <li key={person.id}>{person.name}</li>)}
+      </ul>
     </div>
   )
 }
