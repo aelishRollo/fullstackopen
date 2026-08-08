@@ -1,0 +1,9 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+
+button,
+input {
+  margin: 0.25rem;
+}
